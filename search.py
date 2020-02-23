@@ -45,7 +45,7 @@ def check_restaurant(search_key, lat, lon, restaurant):
             return True
     return False
 
-def get_restaurant_nearby(restaurants, search_key, lat, lon):
+def get_restaurant_nearby(search_key, lat, lon, restaurants):
     result = []
     for restaurant in restaurants:
         if check_restaurant(search_key, lat, lon, restaurant):

@@ -24,7 +24,7 @@ def search_nearby():
         return "Cannot get data", 500
 
     if check_search_key_valid(search_key):
-        result = get_restaurant_nearby(restaurants, search_key, lat, lon)            
+        result = get_restaurant_nearby(search_key, lat, lon, restaurants)            
     else:
         return 'Bad request', 404
 

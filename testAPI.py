@@ -5,7 +5,7 @@ import pytest
 from search import get_restaurant_nearby
 from searchNearbyAPI import app
 
-restaurant_test = {
+restaurant_test = [{
     "blurhash": "UYLW^ead*0%24nf6DiRjI]RjMxSgMxx]kBRQ",
     "city": "Helsinki",
     "currency": "EUR",
@@ -22,47 +22,47 @@ restaurant_test = {
         "sushi",
         "japanese"
     ]
-}
+}]
 
 def test_search_key_in_name():
-    assert get_restaurant_nearby('HanKo', 
+    assert len(get_restaurant_nearby('HanKo', 
                             24.942486584186554, 
                             60.16846747856398, 
-                            restaurant_test) == True
-    assert get_restaurant_nearby('HANKO', 
+                            restaurant_test)) == 1
+    assert len(get_restaurant_nearby('HANKO', 
                             24.942486584186554, 
                             60.16846747856398, 
-                            restaurant_test) == True
+                            restaurant_test)) == 1
     
 def test_search_key_in_description():
-    assert get_restaurant_nearby('raAka', 
+    assert len(get_restaurant_nearby('raAka', 
                             24.942486584186554, 
                             60.16846747856398, 
-                            restaurant_test) == True
+                            restaurant_test)) == 1
 
 def test_search_key_in_tag():
-    assert get_restaurant_nearby('Japan', 
+    assert len(get_restaurant_nearby('Japan', 
                             24.942486584186554, 
                             60.16846747856398, 
-                            restaurant_test) == True
+                            restaurant_test)) == 1
 
 def test_search_key_no_result():
-    assert get_restaurant_nearby('burger', 
+    assert len(get_restaurant_nearby('burger', 
                             24.942486584186554, 
                             60.16846747856398, 
-                            restaurant_test) == False
+                            restaurant_test)) == 0
     
 def test_distance():
     #Test distance > 3km
-    assert get_restaurant_nearby('sushi', 
+    assert len(get_restaurant_nearby('sushi', 
                             25.942486584186554, 
                             60.16846747856398, 
-                            restaurant_test) == False
+                            restaurant_test)) == 0
     #Test distance <= 3km
-    assert get_restaurant_nearby('sushi', 
+    assert len(get_restaurant_nearby('sushi', 
                             24.962486584186554, 
                             60.16846747856398, 
-                            restaurant_test) == True
+                            restaurant_test)) == 1
 
 
 @pytest.fixture
